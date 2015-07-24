@@ -4,6 +4,8 @@
     <script src=" jquery-1.11.3.js"></script>  
     <script type="text/javascript">
         $(document).ready(function () {
+
+            
             //select elements by thier tag code is alert($('td').length);
             $('#table1 tr:even').css('background-color', 'red');
             $('#table2 tr:odd').css('background-color', 'yellow');
@@ -13,15 +15,38 @@
             });
 
             $('span,a,div').css('background-color', 'grey');
-            //lets find elements with class small and big
+            //lets find elements with CLASS small and big
             $('.small,.big').css('background-color', 'green');
-            //select any element with class small and span elements with big
+            //select any element with CLASS small and span elements with big
             $('.small,span.big').css('background-color', 'yellow');
             //select elements that are nested with another element 
             //$('#div2 .small').css //here all nested elements under div2 thant have class small under it will be selected
-
-            //if the class element is defined <div class="small big"> and we want to select both of them then use the following
+            //if the CLASS element is defined <div class="small big"> and we want to select both of them then use the following
             //$('.small.big') 
+
+            //to find all elements with ATTRIB title and value 'divtitle'
+            $('[title="divtitle"]').css('border', '20px solid black');
+            //other ways $('div[title]') => all div elements that have attrib titlte
+            //$('div[title="divtitle"]') => all div elements that have attrib titlte and value divtitle
+            //$('div[title][style]') => all div elements that have attrib titlte and style
+            //$('div[title],[style]') => attrib title or style
+            //$('div[title="divtitle"],[style="background-color:green"]') => attrib title or style with given values
+            //[name="value"] => attrib equal selector
+            //[name!="value"] => attrib not equal selector
+            //[name*="value"] => attrib contains selector i.e the value of the attrib must contain title
+            //[name~="value"] => attrib contains word selector i.e value of the attrib must contain word , delimited by spaces
+            //[name|="value"] => attrib contains prefix selector i.e value equal to or starting with followed by -
+            //[name^="value"] => attrib starts with selector i.e all elements that have title attrib value starting with div
+            //[name$="value"] => attrib ends with selector i.e that have title attrib valueending with
+            
+            //attribs are case sensitive to make them case-insesitive the code is below
+            /*
+            $(document).ready(function(){
+            $('div[title]').filter(function () {
+            return $(this).attr('title').toLowercase() == 'divtitle';
+            }).css('border','3px solid red');
+            */
+
         });
     </script>
 </head>
@@ -71,10 +96,8 @@
         </tr>       
     </table>
     <br/><br />
-    <div>
-        DIV 1
-        <br/>
-        <a href="http://pragimtech.com">Pragim Tech</a>
+    <div title="divtitle">
+        DIV 1      
     </div>
     <br /><br />
     <div>
