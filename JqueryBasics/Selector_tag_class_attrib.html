@@ -1,0 +1,103 @@
+﻿<html>
+<head>
+    <title></title>
+    <script src=" jquery-1.11.3.js"></script>  
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //select elements by thier tag code is alert($('td').length);
+            $('#table1 tr:even').css('background-color', 'red');
+            $('#table2 tr:odd').css('background-color', 'yellow');
+            //lets alert each table row content
+            $('#table1 tr').each(function () {
+                alert($(this).html());
+            });
+
+            $('span,a,div').css('background-color', 'grey');
+            //lets find elements with class small and big
+            $('.small,.big').css('background-color', 'green');
+            //select any element with class small and span elements with big
+            $('.small,span.big').css('background-color', 'yellow');
+            //select elements that are nested with another element 
+            //$('#div2 .small').css //here all nested elements under div2 thant have class small under it will be selected
+
+            //if the class element is defined <div class="small big"> and we want to select both of them then use the following
+            //$('.small.big') 
+        });
+    </script>
+</head>
+<body>
+    <table id="table1" border="1">
+        <tr>
+            <td>C#</td>
+            <td>F#</td>
+            <td>J#</td>
+        </tr>
+        <tr>
+            <td>Python</td>
+            <td>R</td>
+            <td>JQuery</td>
+        </tr>
+        <tr>
+            <td>Python</td>
+            <td>R</td>
+            <td>JQuery</td>
+        </tr>
+        <tr>
+            <td>Oracle</td>
+            <td>SQL</td>
+            <td>Mongo</td>
+        </tr>
+        <tr>
+            <td>BigData</td>
+            <td>Apache</td>
+            <td>SPARK</td>
+        </tr>
+    </table>
+    <table id="table2" border="1">
+        <tr>
+            <td>DEAD</td>
+            <td>ALIVE</td>
+            <td>ZOOMBIE</td>
+        </tr>
+        <tr>
+            <td>PLAY</td>
+            <td>EAT</td>
+            <td>RUN</td>
+        </tr>
+        <tr>
+            <td>SHAILESH</td>
+            <td>BOB</td>
+            <td>SACHIN</td>
+        </tr>       
+    </table>
+    <br/><br />
+    <div>
+        DIV 1
+        <br/>
+        <a href="http://pragimtech.com">Pragim Tech</a>
+    </div>
+    <br /><br />
+    <div>
+        DIV 2
+        <br />
+        <a href="http://pragimtech.com">Pragim Tech</a>
+    </div>
+    <br /><br />
+    <p><span>USEFULL TEXT HIDDEN</span></p>
+    <br /><br />
+    <span class="small">
+        SMALL SPAN 1
+    </span>
+    <br />
+    <div class="small">
+        DIV 3
+    </div>
+    <br />
+    <span class="big">
+        BIG SPAN 2
+    </span>
+    <p class="big">THIS IS A BIG PARA</p>
+
+
+</body>
+</html>

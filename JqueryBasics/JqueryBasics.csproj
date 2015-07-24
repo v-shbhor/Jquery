@@ -66,6 +66,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="jquery-1.11.3.js" />
+    <Content Include="jquery-2.1.4.js" />
+    <Content Include="JqueryBasic_DOM_CDN_Selector.html" />
+    <Content Include="Selector_tag_class_attrib.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

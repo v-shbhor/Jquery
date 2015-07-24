@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <!--We can also load jquery using CDN(content delivery network) server -->
+    <!-- e.g <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.11.3.js"> -->
+    <!-- incase the CDN server down use the following code as a fall back-->
+    <!--
+        <script>
+        window.jQuery || document.write("<script src=" jquery-1.11.3.js"></script>")
+        </script>
+    -->
+    <!-- Benefits of CDN 
+    1. jQuery file can be downloaded from the CDN server that is closest to the user
+    2. Browser Caching : jquery is used on many popular website. If a usr has already
+        visited a webpage that uses jquery from cdn the no need to download again
+    3. Parallel Downloads : if browser allows only 2 concurrent downloads from
+       a given domain then CDN is usefull as it belongs to a diff domain
+    4. Reduce server load : HTTP request is handled by CDN
+    5. Disadvantage : firewall may block the CDN-->
+    <script src=" jquery-1.11.3.js"></script>  
+      
+</head>
+<body>
+<script type="text/javascript">
+    //$ is shortcut for jQuery i.e $(document).ready() or $().ready() or $()
+    //Java Script document.getelementbyid('button1') will give us the raw DOM
+    //while jQuery(#id) returns a jQuery object which wraps the DOM Object
+    //and provides jQuery methods like css(),click()
+    //document.getelementid() is faster than jquery(#id) selector
+    //use jquery only when u need the extra func provided by it.
+    
+    jQuery(document).ready(function () {
+        //To get the raw DOM element in Jquery use the below code
+        alert($('#button1')[0]);
+        $('#button1').css('background-color', 'yellow');
+        jQuery('#button1').click(function () {
+            alert('jquery tutorial');
+        });
+    });
+
+    //window.load event fires when the DOM and all the content on the pages
+    //(images,css etc)  is fully loaded 
+    $(window).load(function () {
+        alert('windows loaded');
+    })
+    $(document).ready(function () {
+        alert('DOM loaded');
+    })
+    
+</script>
+    <input type="button" id="button1" value="click me"/>
+</body>
+</html>
