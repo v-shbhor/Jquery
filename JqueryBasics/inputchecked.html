@@ -1,0 +1,103 @@
+﻿<html>
+<head>
+    <title></title>
+    <script src=" jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            
+
+            //on button click displays the checked boxes
+            $('#btnsubmitskills').click(function () {
+
+//IF we want to display them as soon as the check box is checked then use the code below
+//$('input[name="skills"]').click(function() {
+                //call function 
+                getcheckedcheckbox("skills");
+            });
+
+            $('#btnsubmitcity').click(function () {
+                getcheckedcheckbox("cities");
+            });
+
+            //function to check checked boxes
+            var getcheckedcheckbox = function (groupname) {
+                //passingthe parameter here
+                var result = $('input[name="' + groupname + '"]:checked');
+                if (result.length > 0) {
+                    var resultstring = result.length + " checkboxes checked </br>";
+
+                    result.each(function ()
+                    {
+                        var selectedvalue = $(this).val();
+                        resultstring +=  selectedvalue + " - " + $('label[for="cb-' + selectedvalue +'"]').text() + "<br/>";
+                    });
+
+                    $('#div' + groupname).html(resultstring);
+                }
+                else {
+                    $('#div' + groupname).html("No checkbox checked");
+                }
+            }
+
+            //jquery select selector
+
+            $('#selectprofession').change(function () {
+                //ancestor descendant syntax
+                var selectedoptions = $('#selectprofession option:selected');
+                if (selectedoptions.length > 0)
+                {
+                    var resultstring = '';
+                    selectedoptions.each(function () {
+                        resultstring += "value = " + $(this).val() + ", Text =" + $(this).text() + " <br/>";
+                    });
+                    $('#profession').html(resultstring);
+                }
+               
+            });
+
+            //jquery disabled selector selects all disabled elements $(':disabled') similarly enabled elements $(':enabled')
+            //Select only disabled input elements of type text $('input[type="text]:disabled')
+            //https://api.jquery.com/category/selectors/
+        });
+        
+        </script>
+</head>
+<body style="font-family:Arial">
+    Skills:
+    <input type="checkbox" name="skills" value="js" />
+    <label for="cb-js">JavaScript</label>
+    <input type="checkbox" name="skills" value="jq" />
+    <label for="cb-jq">JQuery</label>
+    <input type="checkbox" name="skills" value="cs" />
+    <label for="cs-js">C#</label>
+    <input type="checkbox" name="skills" value="vb" />
+    <label for="cb-vb">VB</label>
+    <br/><br />
+    Cities:
+    <input type="checkbox" name="cities" value="Pu" />
+    <label for="cb-Pu">Pune</label>
+    <input type="checkbox" name="cities" value="HPh1" />
+    <label for="cb-HPh1">Hinjewadi</label>
+    <input type="checkbox" name="cities" value="Mum" />
+    <label for="cb-Mum">Mumbai</label>
+    <br /><br />
+    Profession:
+    <select id="selectprofession" multiple="multiple">
+            <option value="IT">sdet</option>
+            <option value="AUTO">worshopmngr</option>
+            <option value="MARKETING">salesmanager</option>
+    </select>
+    <br /><br />
+    <input id="btnsubmitskills" type="submit" value="skill" />
+    <input id="btnsubmitcity" type="submit" value="city" />
+    <br /><br />
+    <div id="divskills">
+    </div>
+    <br/>
+    <div id="divcities">
+    </div>
+    <div id="profession">
+    </div>
+</body>
+</html>

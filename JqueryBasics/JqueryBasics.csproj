@@ -66,6 +66,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="inputchecked.html" />
     <Content Include="jquery-1.11.3.js" />
     <Content Include="jquery-2.1.4.js" />
     <Content Include="JqueryBasic_DOM_CDN_Selector.html" />
