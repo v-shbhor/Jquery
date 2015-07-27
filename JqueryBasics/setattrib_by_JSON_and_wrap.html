@@ -1,0 +1,96 @@
+﻿
+<html>
+<head>
+    <title></title>
+    <style>
+        .containerdiv {
+            background-color: red;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+    <script src=" jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var config = {
+                'title': 'new div title',
+                'style': 'border:3px solid red',
+                'name': 'My Div'
+            };
+
+            $('div').attr(config);
+
+            //we could write the command above like this also
+            //  $('div').({
+            // 'title': 'new div title',
+            // 'style': 'border:3px solid red',
+            // 'name': 'My Div'
+            //     )};
+
+            var result = '';
+            $('div').each(function () {
+                result += 'title = ' + $(this).attr('title') + '<br/>';
+                result += 'style = ' + $(this).attr('style') + '<br/>';
+                result += 'name = ' + $(this).attr('name') + '<br/>';
+
+            })
+
+            $('#resultspan').html(result);
+
+            //WRAP the div elements use f12 to see the wrapped xml
+            //UNWRAP will do the opposite - it will remove the parents of the div element
+            //resultant will look like this
+
+            /*
+            <div class="containerdiv">
+            <div id="div1" title="My Div1">
+                     DIV1
+             </div>
+            <div class="containerdiv">
+            <div id="div2" title="My Div2">
+                     DIV2
+            </div> */
+
+            //WRAPALL
+
+            /*
+            <div class="containerdiv">
+            <div id="div1" title="My Div1">
+                     DIV1
+            </div>
+            <div id="div2" title="My Div2">
+                     DIV2
+            </div>
+            </div>
+            */
+
+            //WRAPINNER
+            /*
+            <div id="div1" title="My Div1">
+            <div class="containerdiv">
+                     DIV1
+            </div>
+            <div id="div2" title="My Div2">
+            <div class="containerdiv">
+                     DIV2
+            </div>
+            </div>
+            */
+            $('div').wrap('<div class="containerdiv"></div>');
+
+
+        });
+    </script>
+</head>
+<body style="font-family:Arial">
+    <div id="div1" title="My Div1">
+        DIV1
+    </div>
+    <br />
+    <div id="div2" title="My Div2">
+        DIV2
+    </div>
+    <br />
+    <span id="resultspan"></span>
+</body>
+</html>

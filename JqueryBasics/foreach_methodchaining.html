@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src=" jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //implicit iteration over the collection in jquery
+            $('li').css('color', 'blue');
+            $('li').slideUp(500);
+            $('li').slideDown(2000);
+            $('li').attr('title', 'MY TITLE');
+            //here up in the 4 state we are doing multiple function on the same element
+            //we could chain them in the following way
+            $('li').css('color', 'blue').slideUp(500).slideDown(2000).attr('title', 'MY TITLE');
+            //Chaining will not work with text() but when we set a value to it will work
+            //e.g text('MY Value') then it will work
+
+
+            //declaring a variable and then displaying it
+            //var divelement = $('#divresult');
+
+            var result = '';
+            $('li').each(function () {
+                
+            //The below code is inefficienta s it will load the DOM for each value
+               //divelement.html(divelement.html() + '<br/>' + $(this).text());
+                             
+            //best method to load the li in the div
+                result += '<br/>' + $(this).text();
+
+              //break out of each function
+              /*  if ($(this).text() == "JPN")
+                {
+                    return false;
+                } */
+
+              //  alert(index + " : " + $(this).text()); // to use this code add index parameter in the func
+            });
+            $('#divresult').html(result);
+
+            //$.each() to iterate over js objects or arrays
+            //see JSON.HTML for more examples
+
+            /*
+            $(document).ready(function(){
+            var intarray = [100,200,300,400];
+            var result = '';
+            $.each(intarray,function(index,element){
+            result += 'index= ' + index + ", value = " + element + "<br/>";
+            })
+            
+            }) 
+            */
+
+        });
+    </script>
+</head>
+<body style="font-family:Arial">
+    <ul>
+        <li>US</li>
+        <li>UK</li>
+        <li>JPN</li>
+        <li>AUS</li>
+        </ul>
+    <div id="divresult"></div>
+</body>
+</html>

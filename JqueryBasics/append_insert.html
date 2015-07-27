@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src=" jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$('div').append('<b> Tutorial</b>');
+            //$('div').prepend('<b> Tutorial </b>');
+            // $('div').append($('#myspan'));
+
+            /*insert element before */
+            $('div').before('<h3>PROGRAMMING</h3>');
+            $('<h3>***PROGRAMMING****</h3>').insertBefore($('div'));
+            $('div').after('<h3>TESTING</h3>');
+            //similalrly insert after and also insert existing elements
+
+        });
+    </script>
+</head>
+<body style="font-family:Arial">
+    <span id="myspan"> Programming</span>
+    <div id="div1">Jquery</div>
+    <div id="div2">C#</div>
+    <div id="div3">ASP</div>
+</body>
+</html>

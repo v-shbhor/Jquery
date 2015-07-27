@@ -1,0 +1,65 @@
+﻿<html>
+<head>
+    <title></title>
+    <script src=" jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //the below id a JSON array
+            var employeesJSON = [{
+                "fname": "todd",
+                "lname": "modd",
+                "gender": "male",
+            },
+            {
+                "fname": "mary",
+                "lname": "modd",
+                "gender": "female",
+            }
+            ];
+
+            var jsonstring = '[{ "fname": "todd", "lname": "modd", "gender": "male" }, { "fname": "mary", "lname": "modd", "gender": "female" }]';
+
+            //nested json objects
+            var studentJSON = {
+                "SHAILESH": {
+                    "fname": "shailesh",
+                    "lname": "bhor",
+                    "gender": "male",
+                },
+                "VASUDHA": {
+                    "fname": "vasudha",
+                    "lname": "bhor",
+                    "gender": "female",
+                }
+            }
+
+            $('#divresult').html(employeesJSON[0].fname);
+            $('#divresult').html(studentJSON.SHAILESH.fname);
+
+            //convert Json to json string
+            var result = JSON.stringify(employeesJSON);
+            $('#divresult1').html(result);
+
+            //Convert json string to json array
+            var employeesresult2 = JSON.parse(jsonstring);
+            var convertedjsonstring = '';
+            $.each(employeesresult2,function(i,item){
+                convertedjsonstring += 'first name = ' + item.fname + '</br>';
+                convertedjsonstring += 'last name = ' + item.lname + '</br>';
+                convertedjsonstring += 'gender = ' + item.gender + '</br></br>';
+            });
+
+            $('#divresult2').html(convertedjsonstring);
+
+            
+
+        });
+    </script>
+</head>
+<body style="font-family:Arial">
+    <div id="divresult"></div>
+    <div id="divresult1"></div>
+    <div id="divresult2"></div>
+
+</body>
+</html>

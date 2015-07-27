@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src=" jquery-1.11.3.js"></script>
+    <style>
+        .boldclass {
+            font-weight: bold;
+        }
+
+        .italicsclass {
+            font-style: italic;
+        }
+
+        .colorclass {
+            color: red;
+        }
+        .textboxstyle{ 
+            background-color:green;
+            color:white;           
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#btn1').click(function () {
+                $('p').addClass('colorclass');
+            });
+            $('#btn2').click(function () {
+                $('p').removeClass('colorclass');
+            });
+
+            $('#btn3').click(function () {
+                $('p').addClass('colorclass italicsclass');
+            });
+            $('#btn4').click(function () {
+                $('p').removeClass('colorclass italicsclass');
+            });
+
+            $('#btn5').click(function () {
+                $('p').addClass('colorclass italicsclass boldclass');
+            });
+            $('#btn6').click(function () {
+                $('p').removeClass();
+            });
+            $('#btn7').click(function () {
+                //toggle class will remove if classes are applied or else wise
+                $('p').toggleClass('colorclass italicsclass boldclass');
+            });
+
+            $('input[type="text"]').each(function () {
+                $(this).focus(function () {
+                    $(this).addClass('textboxstyle');
+                });
+                $(this).blur(function () {
+                    $(this).removeClass('textboxstyle');
+                });
+            });
+
+        });
+    </script>
+</head>
+<body style="font-family:Arial">
+    <p>PROGRAMMING</p>
+    <table>
+        <tr>
+            <td>
+                <input id="btn1" style="width=:254px" type="button"
+                       value="Add color class=" />
+            </td>
+            <td>
+                <input id="btn2" style=" width=:254px" type="button"
+                       value=" Remove color class" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="btn3" style=" width=:254px" type="button"
+                       value="Add color class and italics" />
+            </td>
+            <td>
+                <input id="btn4" style=" width=:254px" type="button"
+                       value=" Remove color class and italics" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="btn5" style=" width=:254px" type="button"
+                       value="Add color class , italics and bold class" />
+            </td>
+            <td>
+                <input id="btn6" style=" width=:254px" type="button"
+                       value=" Remove all class" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="btn7" style=" width=:254px" type="button"
+                       value="Toggle Classes" />
+            </td>
+        </tr>
+    </table>
+    <br/><br /><br />
+
+    <table>
+        <tr>
+            <td>FIRST NAME</td>
+            <td><input type="text"/></td>
+        </tr>
+        <tr>
+            <td>LAST NAME</td>
+            <td><input type="text" /></td>
+        </tr>
+        <tr>
+            <td>GENDER</td>
+            <td>
+                <select>
+                    <option value="select">PLEASE SELECT</option>
+                    <option value="MALE">MALE</option>
+                    <option value="FEMALE">FEMALE</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>EMAIL</td>
+            <td><input type="text"/></td>
+        </tr>
+    </table>
+</body>
+</html>
