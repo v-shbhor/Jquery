@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        .imgstyle {
+            height: 100px;
+            width: 100px;
+            border: 3px solid grey;
+        }
+    </style>
+
+    <script src=" jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$('#divcontainer img').on({
+            //adding 3 eventhandler functions i.e 5*3 = 15 event handler functions not good for performance
+
+            //we can optimize it by attaching evt hdlr func to each img elements lets attach it to parent 
+            //add selector to the on method. ie remove img from divcontainer and place it at the end as selector for on method
+            $('#divcontainer').on({
+            
+                mouseover: function () {
+                    $(this).css({
+                        'cursor': 'pointer',
+                        'border-Color': 'red'
+                    });
+                },
+                mouseout: function () {
+                    $(this).css({
+                        'cursor': 'default',
+                        'border-Color': 'grey'
+                    });
+                },
+                click: function () {
+                    var imageurl = $(this).attr('src');
+                    var effect = $('selectimgeffect').val();
+                    var duration = $('selectimgduration').val() * 1000;
+                    var mainimg = $('#mainimage');
+                    if (effect == 'Fade') {
+                        mainimg.fadeOut(duration, function () {
+                            $(this).attr('src', imageurl);
+                        }).fadeIn(300);
+                    }
+                    else
+                    {
+                        mainimg.slideUp(duration, function () {
+                            $(this).attr('src', imageurl);
+                        }).slideDown(300);
+                    }
+                }
+            }, 'img');
+            var mainimgelement = $('#mainimage');
+            var height = parseInt(mainimgelement.attr('height'));
+            var width = parseInt(mainimgelement.attr('width'));
+
+            $('#enlarge').click(function () {
+                height += 100;
+                width += 100;
+                //.animate(properties,duration,easing,complete)
+                //using properties and duration below
+                //easing -> use for transition. Default is swing https://jquery.com/easing
+                //complete -> function to call once animation completes
+                mainimgelement.animate({
+                    'height': height,
+                    'width': width
+                },1000,'linear',animationcomplete);
+            });
+
+            $('#shrink').click(function () {
+                height -= 100;
+                width -= 100;
+                mainimgelement.animate({
+                    'height': height,
+                    'width': width
+                });
+            });
+            function animationcomplete()
+            {
+                alert('animation complete');
+            }
+
+        });
+        
+    </script>
+</head>
+<body>
+    <select id="selectimgeffect">
+        Select Effect: <option value="Fade">FADE</option>
+        <option value="Slide">SLIDE</option>
+    </select>
+    <select id="selectimgduration">
+        Time in secs : <option value="0.5">0.5</option>
+        <option value="1">1</option>
+        <option value="1">2</option>
+    </select>
+    <input type="button" id="enlarge" value="enlarge" />
+    <input type="button" id="shrink" value="shrink" />
+    <br/><br/>
+    <img id="mainimage" height="500" width="500" style="border:3px solid grey"
+         src="images/1.jpg" />
+    <br />
+    <div id="divcontainer">
+        <img src="images/1.jpg" class="imgstyle" />
+        <img src="images/2.jpg" class="imgstyle" />
+        <img src="images/3.jpg" class="imgstyle" />
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src=" jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var prevpcnt = 0;
+            var currpcnt = 0;
+            $('#startanimation').click(function () {
+                prevpcnt = currpcnt;
+                currpcnt = $('#ddlpercent').val()
+                animateprogressbar(prevpcnt,currpcnt);
+            });
+
+            function animateprogressbar(prevpcnt, currpcnt) {
+                $('#innerdev').animate({
+                    'width': (250 * currpcnt) / 100
+                }, 3000);
+
+                if (prevpcnt > currpcnt) {
+                    currpcnt -= 1;
+
+                }
+                //display the count on the progress bar
+                $({ counter: prevpcnt }).animate({ counter: currpcnt }, {
+                    duration: 2000,
+                    step: function () {
+                        $('#innerdev').text(Math.ceil(this.counter) + '%');
+                    }
+                })
+            }
+        });
+    </script>
+</head>
+<body>
+    select Percentage :
+    <select id="ddlpercent">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="60">60</option>
+        <option value="70">70</option>
+        <option value="80">80</option>
+        <option value="90">90</option>
+        <option value="100">100</option>
+    </select>
+    <input type="button" id="startanimation" value="startanimation" />
+    <div id="outerdev" style="background-color:#EEEEEE; height:20px; width:500px; padding:5px">
+        <div id="innerdev" style="background-color:red; height:19px; width:0px; color:white;text-align:center"></div>
+    </div>
+</body>
+</html>

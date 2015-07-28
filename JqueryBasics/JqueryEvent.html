@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        .buttonstyle
+        {
+            background-color:red;
+            color:white;
+            cursor:pointer;
+        }
+    </style>
+    <script src=" jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btn').click(function (event) {
+                geteventdetails(event);
+            }).mouseover(function (event) {
+                geteventdetails(event);
+            }).mouseout(function (event) {
+                geteventdetails(event);
+            });
+
+            function geteventdetails(event)
+            {
+                //the above event object is a jquery obj hence works across all browsers
+                //If we did not pass the event object it would be a raw java script obj
+                //Other way we could convert this JS event object 
+                /* var e = $.event.fix(event); */
+                var eventdetails = 'event =' + event.type + '<br/>' +
+                                  'X =' + event.pageX + '<br/>' +
+                                  'Y =' + event.pageY + '<br/>' +
+                                  'Target Element =' + event.target.type + '<br/>' +
+                                  'Target Element tag name=' + event.target.tagName + '<br/>';
+                $('#divresult').html(eventdetails);
+            }
+
+            //which button clicked using event object for jquery 
+            //as it works across all browsers
+            $('#btn2').mouseup(function (event) {
+                var whichbutton = '';
+                switch (event.which) {
+                    case 1: whichbutton = "left "; break;
+                    case 2: whichbutton = "middle "; break;
+                    case 3: whichbutton = "right "; break;
+                    default: whichbutton = "invalid "; break;
+                }
+                $('#divresult2').html(whichbutton);
+
+
+            });
+
+            //here we are binding event handlers using bind the click event to this btn
+            //we can also use .on or .off instead of .bind when we are using jquery 1.7 or higher
+            $('#btn3').bind('click mouseover mouseout', function (event) {
+                if (event.type == 'click') {
+                    $('#divresult3').html('button clicked at X = ' + event.pageX + 'Y =  ' + event.pageY);
+                }
+                else if (event.type == 'mouseover') {
+                    $(this).addClass('buttonstyle');
+                }
+                else
+                {
+                    $(this).removeClass('buttonstyle');
+                }
+            });
+            //to unbind $('#btn3').unbind('click') to remove all .unbind()
+            $('#btn4').on('click', {fname: "John" , lname: "bhor"}, sayhello);
+            function sayhello(event)
+            {
+                alert('Hello' + event.data.fname + ' ' + event.data.lname);
+            }
+
+            //add event handlers to dynamically created handlers
+           /* $('li').on('click', function () {
+                $(this).fadeOut(500);
+            });
+
+            $('#btn5').on('click', function () {
+                var newlistitem = $('<li>new list item</li>').on('click', function () {
+                    $(this).fadeOut(500);
+                });
+                $('ul').append(newlistitem);
+
+            });*/
+
+            //the above method has a better way to do explained below
+            //here we are setting the fade out on the ul 
+            //hence there will be only one copy of this event handler in the memory
+            //li event will be bubbled up to UL if i use li:even only the even will fade out
+
+            $('ul').on('click', 'li' /*li:even*/, function () {
+                $(this).fadeOut(500);
+            });
+
+            $('#btn5').on('click', function () {
+                
+                $('ul').append(('<li>new list item</li>'));
+
+            })
+
+            //while using delegate we first set the selector and then the event
+            //reverse of the on method $('ul').delegate('li', 'click' /*li:even*/, function () {
+            //To undelegate use  $('ul').undelegate
+
+            //using live function $('ul').live('click',function() {
+            //with on() and delegate() func the event gets bubbled up to the parent specified element
+            //element whereas in live () all the way top the document object
+
+
+            //to get he click event handler only once we can use .one instead of .on and then .off
+
+            //*********************************************************//
+            // CHECK IF EVENT IS ALREADY BOUND ///
+            //we will add one more event to the btn5
+            $('#btn5').on('click', function () {
+
+                alert('button clicked');
+
+            })
+            $('#btn5').on('click', function () {
+
+                alert('button clicked');
+
+            })
+
+            //to check if the button has already an event
+            //if click event handler is used with raw javascript then the below code will not detect it
+            //i.e document.getelementbyid('btn5').addeventlistener('click',clickhandler);
+            //above handler will not be detected by the below code
+            var jqueryObject = $('#btn5'); //this is a jquery obj
+            var rawDOMelement = jqueryObject.get(0); // get function is used to get the raw element
+            var eventobj = $._data(rawDOMelement, 'events');
+            if(eventobj != undefined && eventobj.click != undefined)
+            {
+                alert('click event already exists')
+            }
+            else {
+              //  $('#btn5').on('click', function () {
+
+                //    alert('button clicked');
+
+                // })
+                alert('click event does not exists');
+            }
+
+            //DISABLING RIGHT CLICK ON PAGE
+            $(this).on('contextmenu', function (e) {
+                e.preventDefault();
+                $('#divresult4').append('right click disabled');
+            });
+
+
+            //SCROLL EVENT
+            var count = 0;
+            $('#divresult5').scroll(function () {
+                
+                $('span').text(count +=1);
+            })
+
+        });
+    </script>
+</head>
+<body>
+    <input id="btn" type="button" value="clickme" />
+    <input id="btn2" type="button" value="WhichButtonClicked"/>
+    <input id="btn3" type="button" value="btnbindmethod" />
+    <input id="btn4" type="button" value="paramtoonmethod" />
+    <br /><br />
+    <input id="btn5" type="button" value="Add a new list item" />
+    <h3>
+        RIGHT CLICK DISABELED ON THE PAGE
+    </h3>
+    <h4 style="color:red">  SROLL EVENT HANDLED <span>0</span> times</h4>
+    <ul>
+        <li>List Item</li>
+        <li>List Item</li>
+    </ul>
+    <br/>
+    <div id="divresult"></div>
+    <div id="divresult2"></div>
+    <div id="divresult3"></div>
+    <div id="divresult4"></div>
+    <br /><br />
+    <div id="divresult5" style="width:300px; height:200px;border:1px solid black; overflow:scroll">
+        Mona Hibbard (Driver) is a young woman from a troubled home who 
+        has one overarching goal: to become the winner of the Miss 
+        American Miss pageant. Her mother is an alcoholic who 
+        graduates from berating her young daughter for not doing 
+        well in kids' pageants to declaring she will not provide 
+        any money or support for Mona if she keeps competing. 
+        Fortunately for Mona, she becomes best friends with Ruby 
+        Stilwell (Adams), who joins forces with her kind-hearted 
+        grandmother to help Mona as she begins her steady rise in the 
+        beauty pageant ranks. Unfortunately for Mona, she becomes 
+        pregnant and is horrified because women with children are not 
+        eligible for the MAM crown, and she has a young daughter         
+    </div>
+</body>
+</html>
+

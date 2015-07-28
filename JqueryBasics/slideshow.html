@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        .imgstyle {
+            height: 100px;
+            width: 100px;
+            border: 3px solid grey;
+        }
+    </style>
+
+    <script src=" jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var imgurl = new Array();
+            var intrvlid;
+            var btnstart = $('#startslideshow');
+            var btnstop = $('#stopslideshow');
+            $('#divcontainer img').each(function () {
+                imgurl.push($(this).attr('src'));
+            });
+            function setimage()
+            {
+                var mainimageelement = $('#mainimage');
+                var currentimageurl = mainimageelement.attr('src');
+                var currentimgindex = $.inArray(currentimageurl, imgurl);
+                if(currentimgindex == (imgurl.length-1))
+                {
+                    currentimgindex = -1;
+                }
+                mainimageelement.attr('src', imgurl[currentimgindex+1]);
+            }
+
+            btnstart.click(function () {
+                //this is a JS function
+                intrvlid = setInterval(setimage, 500);
+                $(this).attr('disabled', 'disabled');
+                btnstop.removeAttr('disabled');
+            })
+
+            btnstop.click(function () {
+                clearInterval(intrvlid);
+                $(this).attr('disabled', 'disabled');
+                btnstart.removeAttr('disabled');
+            }).attr('disabled', 'disabled');
+        });
+
+    </script>
+</head>
+<body>
+    <input type="button" id="startslideshow" value="startslideshow" />
+    <input type="button" id="stopslideshow" value="stopslideshow" />
+    <img id="mainimage" height="500" width="500" style="border:3px solid grey"
+         src="images/1.jpg" />
+    <br />
+    <div id="divcontainer">
+        <img src="images/1.jpg" class="imgstyle" />
+        <img src="images/2.jpg" class="imgstyle" />
+        <img src="images/3.jpg" class="imgstyle" />
+    </div>
+</body>
+</html>

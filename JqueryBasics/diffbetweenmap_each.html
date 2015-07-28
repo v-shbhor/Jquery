@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src=" jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var intarray = [1, 2, 3, 4, 5];
+            function functionA(index,element)
+            {
+                return element * 5;
+            }
+
+            function functionB(element,index)
+            {
+                return element * 5;
+            }
+            //each method is an immutable iterator and returns orignal array
+            //we can terminate the loop here by returning false
+            var result = $.each(intarray, functionA);
+
+            //order of parameters in map method is element and then index
+            //map method is an mutable iterator and returns new array
+            //no method to terminate the loop
+            var result2 = $.map(intarray, functionB)
+            document.write('each = ' + result);
+            document.write('<br/>');
+            document.write('each = ' + result2);
+        });
+        </script>
+</head>
+<body style="font-family:Arial">
+   
+</body>
+</html>
