@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,6 +41,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -67,10 +71,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Addremoveclasses.html" />
+    <Content Include="AJAX_webservice.html" />
     <Content Include="append_insert.html" />
+    <Content Include="ASPXPAGE_JQUERY.aspx" />
     <Content Include="diffbetweenmap_each.html" />
+    <Content Include="EmployeeService.svc" />
+    <Content Include="emplyeeservice.asmx" />
     <Content Include="FloatingDivElement.html" />
     <Content Include="foreach_methodchaining.html" />
+    <Content Include="gethelptext.aspx" />
+    <Content Include="help.html" />
     <Content Include="imagegalleryusingJquery.html" />
     <Content Include="images\1.jpg" />
     <Content Include="images\2.jpg" />
@@ -78,8 +88,10 @@
     <Content Include="inputchecked.html" />
     <Content Include="jquery-1.11.3.js" />
     <Content Include="jquery-2.1.4.js" />
+    <Content Include="JqueryAJAX_LOAD_GET.html" />
     <Content Include="JqueryBasic_DOM_CDN_Selector.html" />
     <Content Include="JqueryEvent.html" />
+    <Content Include="Json.aspx" />
     <Content Include="JSON.html" />
     <Content Include="OptimizedProgressBar_password.html" />
     <Content Include="Progressbar.html" />
@@ -90,7 +102,36 @@
     <Content Include="net-json_json-net.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ASPXPAGE_JQUERY.aspx.cs">
+      <DependentUpon>ASPXPAGE_JQUERY.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ASPXPAGE_JQUERY.aspx.designer.cs">
+      <DependentUpon>ASPXPAGE_JQUERY.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="employe4.cs" />
     <Compile Include="employee.cs" />
+    <Compile Include="EmployeeAJAX.cs" />
+    <Compile Include="EmployeeService.svc.cs">
+      <DependentUpon>EmployeeService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="emplyeeservice.asmx.cs">
+      <DependentUpon>emplyeeservice.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="gethelptext.aspx.cs">
+      <DependentUpon>gethelptext.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gethelptext.aspx.designer.cs">
+      <DependentUpon>gethelptext.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Json.aspx.cs">
+      <DependentUpon>Json.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Json.aspx.designer.cs">
+      <DependentUpon>Json.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="net-json_json-net.aspx.cs">
       <DependentUpon>net-json_json-net.aspx</DependentUpon>

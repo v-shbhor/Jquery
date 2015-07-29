@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- AJAX stands for Asynchronous JS and XML allows parts of the page to be
+        updated without having to reload the entire page
+        .load (url , data , complete)
+        complete parameter is a callback function and has three param
+        response , status , xhr
+        -->
+
+    <title></title>
+    <script src=" jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //*******************************************************//
+            /* CODE TO LOAD FROM HTML AJAX */
+            //*******************************************************//
+            /*     var textbox = $('input[type="text"');
+                textbox.focus(function () {
+                    var helpdiv = $(this).attr('id') + 'help';
+                    $('#' + helpdiv).load('help.html #' + helpdiv);
+                });
+
+                textbox.blur(function () {
+                    var helpdiv = $(this).attr('id') + 'help';
+                    $('#' + helpdiv).html('');
+                }); */
+            //*******************************************************//
+
+
+            //*******************************************************//
+            /* CODE TO LOAD FROM SQLDB - ASPX - AJAX */
+            //*******************************************************//
+            var textbox = $('input[type="text"');
+            textbox.focus(function () {
+                var helpdiv = $(this).attr('id');
+                /*      //to make the complete callback function give an invalid stored proc name in the gethelptext.aspx
+                      $('#' + helpdiv + 'help').load('gethelptext.aspx', { helptextkey: helpdiv }, function (response, status, xhr) {
+                          var statusmsg = 'status : ' + xhr.status + '<br/>';
+                          statusmsg += 'status  text: ' + xhr.statusmsg + '<br/>';
+                          statusmsg = 'response : ' + response;
+                          $('#divstatus').html(statusmsg);
+
+                      }); */
+
+                // we can use jquery GET function
+                ///*****   HTML    *****////
+                /*
+
+                $.get('gethelptext.aspx', { helptextkey: helpdiv }, function (response) {
+                    $('#' + helpdiv + 'help').html(response);
+                },'html')
+
+                */
+
+                /* JQuery Load function
+                1.Loads only the HTML data from server
+                2.may issue get or post if parameter is present then post
+                3.we specify the selector first HTML content retrieved is auto inserted into the DOM
+
+                JQuery Get function can
+                1.load xml json script or html
+                2.always issues a get request
+                3.we do not specify selector first instead we wil lmake use of callback function
+                to insert data recieved from the server into dom //$('#' + helpdiv + 'help').html(response);
+                4.has 4 parameters the 4th param is a datatype above example we have used 'html'
+                */
+
+                ///*****   JSON    *****////
+                /*
+                $.get('Json.aspx', { helptextkey: helpdiv }, function (response) {
+                    $('#' + helpdiv + 'help').html(response.key +' : '+ response.Text);
+                },'json')
+
+                */
+
+
+                ///*****   XML    *****////
+                //edited the code in JSON.aspx
+
+                $.get('Json.aspx', { helptextkey: helpdiv }, function (response) {
+                    var jqueryXML = $(response);
+                    var textelement = jqueryXML.find('Text');
+                    var keyelement = jqueryXML.find('key');
+                    $('#' + helpdiv + 'help').html(keyelement.text() + ' : ' + textelement.text());
+                }, 'xml')
+
+                //POST request instead of .get use .post
+                //both get and post are used tos end data to the server
+                //when we are sending data with GET data is appended to teh URL as query string while in POST included
+                //in message body
+
+                // JQUERY AJAX FUNCTION //
+                $.ajax({
+                    url: 'Json.aspx',
+                    data: { helptextkey: helpdiv },
+                    method: 'post',
+                    dataType: 'xml',
+                    success: function (response) {
+                        var jqueryXML = $(response);
+                        var textelement = jqueryXML.find('Text');
+                        var keyelement = jqueryXML.find('key');
+                        $('#' + helpdiv + 'help').html(keyelement.text() + ' : ' + textelement.text());
+                    }
+
+                });
+
+            });
+
+            textbox.blur(function () {
+                var helpdiv = $(this).attr('id') + 'help';
+                $('#' + helpdiv).html('');
+            });
+
+
+
+        });
+    </script>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <table>
+        <tr>
+            <td>First Name</td>
+            <td><input type="text" id="fname" /></td>
+            <td><div id="fnamehelp"></div></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input type="text" id="lname" /></td>
+            <td><div id="lnamehelp"></div></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" id="email" /></td>
+            <td><div id="emailhelp"></div></td>
+        </tr>
+        <tr>
+            <td>Income</td>
+            <td><input type="text" id="income" /></td>
+            <td><div id="incomehelp"></div></td>
+        </tr>
+    </table>
+    <br />
+    <div id="divstatus"></div>
+</body>
+</html>

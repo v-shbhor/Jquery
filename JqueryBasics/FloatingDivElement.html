@@ -4,29 +4,76 @@
     <title></title>
     <script src=" jquery-1.11.3.js"></script>
     <script type="text/javascript">
-    $(document).ready(function () {})
+        $(document).ready(function () {
+            var floatingdiv = $('#divfloating');
+            var floatingdivpos = floatingdiv.position();
+            $(window).scroll(function () {
+                var scrollbarpos = $(window).scrollTop();
+                if (scrollbarpos >= floatingdivpos.top)
+                {
+                    floatingdiv.css({
+                        'position': 'fixed',
+                        'top': 100,
+                        'left' : 100
+                    });
+                }
+                else
+                {
+                    floatingdiv.css({
+                        'position': 'relative',
+                        'top': 5,
+                        'left': 100
+                    });
+                }
+            });
+        });
     </script>
 </head>
 <body>
     <table align="center" border="1" style="border-collapse:collapse">
         <tr>
             <td style="width:500px; vertical-align:top">
-                Eusèbe Jaojoby (born 29 July 1955), commonly known by his surname Jaojoby, 
+                Eusèbe Jaojoby (born 29 July 1955), commonly known by his surname Jaojoby,
+                <br /><br /> 
                 is a composer and singer of salegy, a musical style of northwestern Madagascar. 
                 <br /><br />
                 Critics consider him to be one of the originators of the modern salegy style that 
+                <br /><br />
                 emerged in the 1970s, and credit him with transforming the genre from an obscure 
+                <br /><br />
                 regional musical tradition into one of national and international popularity.
                 <br /><br />                 
                 Jaojoby also contributed to the creation of two salegy subgenres, malessa and baoenjy. 
+                <br /><br />
                 Jaojoby has been called the most popular singer in Madagascar and the Indian Ocean 
+                <br /><br />
                 islands, and is widely referred to as the "King of Salegy".
                 <br /><br />
                 His success has earned him such honors as Artist of the Year in Madagascar for 
+                <br /><br />
                 two consecutive years (1998–1999) and the role of Goodwill Ambassador for the United Nations Population Fund in 1999.
+                <br /><br />
                 In 1972 Jaojoby began singing in the northern coastal town of Diego-Suarez.
                 <br /><br />
-                He performed with bands that were experimentally blending American soul and funk with the Malagasy musical traditions of the region. The artist gained popularity and toured regionally, producing four singles with The Players before the band broke up in 1979. After a short break in the 1980s to pursue a career in journalism, Jaojoby resumed his musical career and rose to national prominence with his 1988 hit "Samy Mandeha Samy Mitady." He then reoriented his career toward music, recording his first full-length album in 1992 and becoming a full-time professional musician the following year. He has since released eight full-length albums and has toured extensively in Madagascar and abroad accompanied by his wife and adult children, who perform in the band with him.
+                He performed with bands that were experimentally blending American soul and funk with the Malagasy musical traditions of the region. 
+                <br /><br />
+                The artist gained popularity and toured regionally, producing four singles with 
+                <br /><br />
+                The Players before the band broke up in 1979. After a short break in the 1980s 
+                <br /><br />
+                to pursue a career in journalism, Jaojoby resumed his musical career and rose 
+                <br /><br />
+                to national prominence with his 1988 hit "Samy Mandeha Samy Mitady." 
+                <br /><br />
+                He then reoriented his career toward music, recording his first full-length 
+                <br /><br />
+                album in 1992 and becoming a full-time professional musician the following year.
+                <br /><br />
+                 He has since released eight full-length albums and has toured extensively in 
+                <br /><br />
+                Madagascar and abroad accompanied by his wife and adult children, who perform 
+                <br /><br />
+                in the band with him.
             </td>
             <td style="width:150px; vertical-align:top">Side Panel
             <br/><br />
