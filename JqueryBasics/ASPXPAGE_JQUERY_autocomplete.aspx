@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ASPXPAGE_JQUERY.aspx.cs" Inherits="JqueryBasics.ASPXPAGE_JQUERY" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ASPXPAGE_JQUERY_autocomplete.aspx.cs" Inherits="JqueryBasics.ASPXPAGE_JQUERY" %>
 
 <!DOCTYPE html>
 
@@ -6,6 +6,9 @@
 <head runat="server">
     <title></title>
     <script src=" jquery-1.11.3.js"></script>
+    <!-- the below two file are downloaded form the jqueryui.com required for the autotextcomplete feature-->
+    <script src="jquery-ui.js"></script>
+    <link href="jquery-ui.css" rel="stylesheet" />
     <script type="text/javascript">
         $(document).ready(function () {
             $('#btngetemployee').click(function () {
@@ -63,8 +66,30 @@
                     }
                 });
             });
+
+            $('#txtname3').autocomplete({
+                source: 'employeehandler.ashx'
+                //other method
+                //source: ['choice1','choice2']
+                //source: [{label: "choice1", value: "value1"},{label: "choice2", value: "value2"},]
+                //source: function(request,response)
+                /*{
+                    $.ajax({
+                    url: 'emplyeeservice.asmx/getemployeebyid',
+                    method: 'post',
+                    contenttype: 'application/json;charset=utf-8'
+                    data: json.stringify({term: request.term}),
+                    datatype: json,
+                    success: function(data){
+                    response(data.d)
+                    },
+                    error : function(err){ alert (err); }
+                    })
+                    }*/
+            });
         });
         </script>
+    
 </head>
 <body>
     <form id="form1" runat="server">
@@ -121,8 +146,13 @@
         <input type="button" id="btngetweather" value="get weather live data" />
         <br /><br />
         <div id="resultdiv">
-
         </div>
+            <br /><br />
+        <div>
+            Student Name : 
+            <asp:TextBox ID="txtname3" runat="server"></asp:TextBox>
+        </div>
+
     </form>
 </body>
 </html>
