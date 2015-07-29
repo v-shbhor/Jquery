@@ -69,6 +69,7 @@
     <Content Include="Addremoveclasses.html" />
     <Content Include="append_insert.html" />
     <Content Include="diffbetweenmap_each.html" />
+    <Content Include="FloatingDivElement.html" />
     <Content Include="foreach_methodchaining.html" />
     <Content Include="imagegalleryusingJquery.html" />
     <Content Include="images\1.jpg" />
