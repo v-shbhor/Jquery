@@ -63,6 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="employeehandler.ashx" />
+    <Content Include="MenuForm.aspx" />
+    <Content Include="MenuHandler.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -151,6 +153,17 @@
     </Compile>
     <Compile Include="Json.aspx.designer.cs">
       <DependentUpon>Json.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.cs" />
+    <Compile Include="MenuForm.aspx.cs">
+      <DependentUpon>MenuForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuForm.aspx.designer.cs">
+      <DependentUpon>MenuForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MenuHandler.ashx.cs">
+      <DependentUpon>MenuHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="net-json_json-net.aspx.cs">

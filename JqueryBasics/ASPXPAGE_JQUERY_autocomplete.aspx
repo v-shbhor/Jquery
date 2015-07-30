@@ -77,7 +77,7 @@
                     $.ajax({
                     url: 'emplyeeservice.asmx/getemployeebyid',
                     method: 'post',
-                    contenttype: 'application/json;charset=utf-8'
+                    contenttype: 'application/json;charset=utf-8' 
                     data: json.stringify({term: request.term}),
                     datatype: json,
                     success: function(data){
